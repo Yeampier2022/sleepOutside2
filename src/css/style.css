@@ -26,10 +26,18 @@ img {
   max-width: 100%;
 }
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
+  display: grid;
+  grid-template-columns: 30% 69% 1%;
 }
+.number-card {
+  display: grid;
+
+  align-items: center;
+  margin: 0px;
+  justify-content: end;
+  align-items: center;
+}
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -91,6 +99,9 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+.aa {
+  color: var(--primary-color);
+}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -99,8 +110,8 @@ button {
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
-  position: relative;
-  text-align: center;
+  justify-content: end;
+  display: flex;
 }
 
 .cart svg {
@@ -122,6 +133,19 @@ button {
 .products {
   padding: 0.5em;
 }
+.orders-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 5vw;
+}
+.title-orders {
+  text-align: center;
+}
+.order-customer {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -181,6 +205,7 @@ button {
 }
 .cart-card p {
   margin-top: 0;
+  width: 200px;
 }
 .cart-card .card__name {
   grid-row: 1;
@@ -200,6 +225,66 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+.delete {
+  grid-area: 1/3;
+  font-size: 20px;
+  background-color: white;
+  color: var(--dark-grey);
+}
+a {
+  text-decoration: none;
+}
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}
+.img-grid > div {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-grid img {
+  width: 5vw;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+.img-grid h3 {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+li {
+  list-style-type: none;
+}
+.order-customer {
+  display: flex;
+  flex-direction: column;
+}
+.checkout {
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background-color: #525b0f;
+  border: none;
+  border-radius: 15px;
+}
+
+.checkout:hover {
+  background-color: #f0a868;
+}
+
+.checkout:active {
+  background-color: #525b0f;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.products-checkouk {
+  padding-bottom: 1.5vw;
 }
 
 @media screen and (min-width: 500px) {
