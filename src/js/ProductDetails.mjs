@@ -4,8 +4,8 @@ import {
   setLocalStorage,
   loadHeaderFooter,
   itemsCart,
-} from "./utils.mjs";
-import dataSource from "./ExternalServices.mjs";
+} from './utils.mjs';
+import dataSource from './ExternalServices.mjs';
 
 loadHeaderFooter();
 
@@ -33,30 +33,30 @@ export default class ProductDetails {
   }
   async init() {
     this.product = await new dataSource().findProductById(
-      getParam("product"),
-      getParam("category")
+      getParam('product'),
+      getParam('category')
     );
-    this.renderProductDetails("main");
+    this.renderProductDetails('main');
     document
-      .getElementById("addToCart")
-      .addEventListener("click", this.addToCart.bind(this));
+      .getElementById('addToCart')
+      .addEventListener('click', this.addToCart.bind(this));
   }
   addToCart() {
-    const cart = getLocalStorage("cart-select") || {};
+    const cart = getLocalStorage('cart-select') || {};
     cart[this.product.Id] = cart[this.product.Id]
       ? {
           ...cart[this.product.Id],
           quantity: cart[this.product.Id].quantity + 1,
         }
       : { ...this.product, quantity: 1 };
-    setLocalStorage("cart-select", cart);
+    setLocalStorage('cart-select', cart);
     itemsCart();
   }
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
-      "afterBegin",
+      'afterBegin',
       productDetailsTemplate(this.product)
     );
   }

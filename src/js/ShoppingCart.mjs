@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, itemsCart } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, itemsCart } from './utils.mjs';
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -27,13 +27,13 @@ export default class ShoppingCart {
 
   deleteFromCart(id) {
     return () => {
-      const cart = getLocalStorage("cart-select") || {};
+      const cart = getLocalStorage('cart-select') || {};
       if (cart[id].quantity > 1) {
         cart[id].quantity -= 1;
       } else {
         delete cart[id];
       }
-      setLocalStorage("cart-select", cart);
+      setLocalStorage('cart-select', cart);
       this.renderCartContents();
     };
   }
@@ -42,25 +42,25 @@ export default class ShoppingCart {
     const cartItems = getLocalStorage(this.key);
     if (!cartItems) {
       document.querySelector(this.parentSelector).innerHTML =
-        "<p>No hay productos en el carrito</p>";
+        '<p>No hay productos en el carrito</p>';
       return;
     }
     const htmlItems = Object.values(cartItems).map((item) =>
       cartItemTemplate(item)
     );
-    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+    document.querySelector(this.parentSelector).innerHTML = htmlItems.join('');
 
-    Object.values(getLocalStorage("cart-select")).forEach((item) => {
+    Object.values(getLocalStorage('cart-select')).forEach((item) => {
       document
         .getElementById(item.Id)
-        .addEventListener("click", this.deleteFromCart(item.Id));
+        .addEventListener('click', this.deleteFromCart(item.Id));
     });
 
     const cartTotal = Object.values(cartItems).reduce(
       (total, item) => total + item.FinalPrice * item.quantity,
       0
     ).toFixed(2);
-    document.getElementById("total").textContent = `${cartTotal}`;
+    document.getElementById('total').textContent = `${cartTotal}`;
 
     itemsCart();
   }
