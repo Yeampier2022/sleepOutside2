@@ -14,6 +14,8 @@ export default defineConfig({
         ),
         listing: resolve(__dirname, 'src/product-listing/index.html'),
         checkout: resolve(__dirname, 'src/checkout/index.html'),
+        checkoutSuccess: resolve(__dirname, 'src/checkout/success.html'),
+
       },
     },
   },
