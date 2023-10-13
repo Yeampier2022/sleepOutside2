@@ -30,16 +30,20 @@ export default class ShoppingCart {
       const cart = getLocalStorage('cart-select') || {};
       if (cart[id].quantity > 1) {
         cart[id].quantity -= 1;
+        
       } else {
         delete cart[id];
       }
       setLocalStorage('cart-select', cart);
       this.renderCartContents();
+
+      
     };
   }
 
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
+
     if (!cartItems) {
       document.querySelector(this.parentSelector).innerHTML =
         '<p>No hay productos en el carrito</p>';
@@ -60,8 +64,32 @@ export default class ShoppingCart {
       (total, item) => total + item.FinalPrice * item.quantity,
       0
     ).toFixed(2);
+
     document.getElementById('total').textContent = `${cartTotal}`;
 
     itemsCart();
   }
+
+ 
+
+  disableButton() {
+    const buttons = document.getElementById('button');
+    const disableButton = () => {
+      const cartItemss = getLocalStorage(this.key);
+      const cartKeyss = Object.keys(cartItemss)
+      if(cartKeyss.length === 0)   {
+            buttons.disabled = true;   
+
+      }
+      else{
+       window.location.href = '/checkout/index.html';
+       
+      }
+    
+    };
+
+    buttons.addEventListener('click', disableButton);
+  }
+
+
 }
